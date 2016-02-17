@@ -18,10 +18,10 @@ public:
 
 class isConsonant {
 public:
-	bool operator()(char simbol) const
+	bool operator()(char _simbol) const
 	{
 		const std::string consonants = "BCDFGHJKLMNPQRSTVWXZ";
-		return consonants.find_first_of(std::toupper(simbol)) != std::string::npos;
+		return consonants.find_first_of(std::toupper(_simbol)) != std::string::npos;
 	}
 };
 
@@ -73,7 +73,7 @@ public:
 		return size_;
 	}
 
-	float TMyFirstClass::percent_words(int _len = 5)
+	float TMyFirstClass::percentWords(int _len = 5)
 	{
 		return static_cast<float>(TMyFirstClass::countWords(_len)) / size_ * 100;
 	}
@@ -89,7 +89,7 @@ public:
 			<< std::endl << std::endl;
 		std::cout << "Count of words, which length " << _len << ", is " << TMyFirstClass::countWords(_len)
 			<< std::endl << std::endl;
-		std::cout << "Percent of words, which length " << _len << ", is " << TMyFirstClass::percent_words(_len) << "%"
+		std::cout << "Percent of words, which length " << _len << ", is " << TMyFirstClass::percentWords(_len) << "%"
 			<< std::endl << std::endl;
 		std::cout << "Count of vowels in sentence is " << TMyFirstClass::countVowels(words_)
 			<< std::endl << std::endl;

@@ -25,6 +25,18 @@ public:
 				std::cout << "File 1 : " << a << std::endl << "File 2 : " << b << std::endl << std::endl;
 			}
 		}
+		if (f1_.eof() && !f2_.eof())
+		{
+			i_++;
+			std::cout << "Files different in " << i_ << " line " << std::endl;
+			std::cout << "File 1 : " << "" << std::endl << "File 2 : " << b << std::endl << std::endl;
+		}
+		else
+		{
+			i_++;
+			std::cout << "Files different in " << i_ << " line " << std::endl;
+			std::cout << "File 1 : " << a << std::endl << "File 2 : " << "" << std::endl << std::endl;
+		}
 	}
 
 	~compareFiles()

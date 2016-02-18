@@ -1,0 +1,44 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+
+class compareFiles
+{
+public:
+	compareFiles()
+		: i_(0)
+	{
+		std::cout << "Enter the file name of first document : ";
+		std::cin >> fileName1_;
+		std::cout << "Enter the file name of second document : ";
+		std::cin >> fileName2_;
+		f1_.open(fileName1_);
+		f2_.open(fileName2_);
+	}
+
+	void compare()
+	{
+		while (!f1_.eof() && !f2_.eof())
+		{
+			f1_ >> a_;
+			f2_ >> b_;
+			i_++;
+			if (a_ != b_)
+			{
+				std::cout << "Files differents in " << i_ << " line " << std::endl;
+				std::cout << "File 1 : " << a_ << "\n" << "File 2 : " << b_ << "\n" << std::endl;
+			}
+		}
+	}
+
+	~compareFiles()
+	{
+		f1_.close();
+		f2_.close();
+	}
+private:
+	std::fstream f1_, f2_;
+	std::string a_, b_;
+	char fileName1_[64] = { "" }, fileName2_[64] = { "" };
+	size_t i_;
+};

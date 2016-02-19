@@ -14,7 +14,7 @@ public:
 	void compare(std::ostream &out = std::cout)
 	{
 		std::string a, b;
-		while (!f1_.eof() && !f2_.eof())
+		while (!f1_.eof() || !f2_.eof())
 		{
 			f1_ >> a;
 			f2_ >> b;

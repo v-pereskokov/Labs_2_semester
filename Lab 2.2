@@ -1,3 +1,4 @@
+template <class T>
 class IUVector
 {
 public:
@@ -7,21 +8,21 @@ public:
 	explicit IUVector(size_t size)
 	{
 		size_ = size;
-		vector_ = new double[size_];
+		vector_ = new T[size_];
 	}
 
-	IUVector(const IUVector &copy)
+	IUVector(const IUVector <T>&copy)
 		:size_(copy.size_)
 	{
-		vector_ = new double[size_];
+		vector_ = new T[size_];
 		for (size_t i = 0; i < size_; i++)
 			vector_[i] = copy.vector_[i];
 	}
 
-	IUVector(const double* massive, size_t size)
+	IUVector(size_t size, const T massive)
 		:size_(size)
 	{
-		vector_ = new double[size_];
+		vector_ = new T[size_];
 		for (size_t i = 0; i < size_; i++)
 			vector_[i] = massive[i];
 	}
@@ -39,24 +40,24 @@ public:
 		return temp;
 	}
 
-	double &operator [] (size_t index) const
+	T &operator [] (size_t index) const
 	{
 		return vector_[index];
 	}
 
-	IUVector &operator = (const IUVector &vector)
+	IUVector &operator = (const IUVector <T>&vector)
 	{
 		if (&vector == this)
 			return *this;
 		delete[] vector_;
 		size_ = vector.size_;
-		vector_ = new double[size_];
+		vector_ = new T[size_];
 		for (size_t i = 0; i < size_; i++)
 			vector_[i] = vector.vector_[i];
 		return *this;
 	}
 
-	IUVector operator * (double number)
+	IUVector operator * (T number)
 	{
 		IUVector temp(*this);
 		for (size_t i = 0; i < size_; i++)
@@ -64,13 +65,13 @@ public:
 		return temp;
 	}
 
-	IUVector &operator *= (double number)
+	IUVector &operator *= (T number)
 	{
 		*this = *this * number;
 		return *this;
 	}
 
-	IUVector operator / (double number)
+	IUVector operator / (T number)
 	{
 		IUVector temp(*this);
 		for (size_t i = 0; i < size_; i++)
@@ -78,7 +79,7 @@ public:
 		return temp;
 	}
 
-	IUVector &operator /= (double number)
+	IUVector &operator /= (T number)
 	{
 		*this = *this / number;
 		return *this;
@@ -89,14 +90,15 @@ public:
 		delete[] vector_;
 	}
 
-	friend std::ostream &operator << (std::ostream &, IUVector &);
+	template<class T> friend std::ostream &operator << (std::ostream &, IUVector <T>&);
 
 private:
-	double *vector_;
+	T *vector_;
 	size_t size_;
 };
 
-std::ostream &operator << (std::ostream &out, IUVector &vector)
+template <class T>
+std::ostream &operator << (std::ostream &out, IUVector <T>&vector)
 {
 	out << "Vector: (";
 	for (size_t i = 0; i < vector.size_; i++)

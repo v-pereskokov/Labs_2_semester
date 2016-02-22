@@ -1,0 +1,111 @@
+class IUVector
+{
+public:
+	IUVector()
+		: size_(0) {}
+
+	explicit IUVector(size_t size)
+	{
+		size_ = size;
+		vector_ = new double[size_];
+	}
+
+	IUVector(const IUVector &copy)
+		:size_(copy.size_)
+	{
+		vector_ = new double[size_];
+		for (size_t i = 0; i < size_; i++)
+			vector_[i] = copy.vector_[i];
+	}
+
+	IUVector(size_t size, const double* massive)
+		:size_(size)
+	{
+		vector_ = new double[size_];
+		for (size_t i = 0; i < size_; i++)
+			vector_[i] = massive[i];
+	}
+
+	size_t size()
+	{
+		return size_;
+	}
+
+	IUVector clear()
+	{
+		IUVector temp(*this);
+		for (size_t i = 0; i < size_; i++)
+			temp.vector_[i] = 0;
+		return temp;
+	}
+
+	double &operator [] (size_t index) const
+	{
+		return vector_[index];
+	}
+
+	IUVector &operator = (const IUVector &vector)
+	{
+		if (&vector == this)
+			return *this;
+		delete[] vector_;
+		size_ = vector.size_;
+		vector_ = new double[size_];
+		for (size_t i = 0; i < size_; i++)
+			vector_[i] = vector.vector_[i];
+		return *this;
+	}
+
+	IUVector operator * (double number)
+	{
+		IUVector temp(*this);
+		for (size_t i = 0; i < size_; i++)
+			temp.vector_[i] *= number;
+		return temp;
+	}
+
+	IUVector &operator *= (double number)
+	{
+		*this = *this * number;
+		return *this;
+	}
+
+	IUVector operator / (double number)
+	{
+		IUVector temp(*this);
+		for (size_t i = 0; i < size_; i++)
+			temp.vector_[i] /= number;
+		return temp;
+	}
+
+	IUVector &operator /= (double number)
+	{
+		*this = *this / number;
+		return *this;
+	}
+
+	~IUVector()
+	{
+		delete[] vector_;
+	}
+
+	friend std::ostream &operator << (std::ostream &, IUVector &);
+
+private:
+	double *vector_;
+	size_t size_;
+};
+
+std::ostream &operator << (std::ostream &out, IUVector &vector)
+{
+	out << "Vector: (";
+	for (size_t i = 0; i < vector.size_; i++)
+	{
+		out << vector.vector_[i];
+		if (i == vector.size_ - 1)
+			out << ")" << std::endl;
+		else
+			out << ", ";
+	}
+	return out;
+}

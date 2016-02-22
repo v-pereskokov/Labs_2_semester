@@ -27,21 +27,9 @@ public:
 			vector_[i] = massive[i];
 	}
 
-	size_t size()
+	size_t size() const
 	{
 		return size_;
-	}
-
-	IUVector clear()
-	{
-		IUVector temp(*this);
-		memcpy(temp, '\0', temp.size_);
-		return temp;
-	}
-
-	T &operator [] (size_t index) const
-	{
-		return vector_[index];
 	}
 
 	IUVector &operator = (const IUVector <T>&vector)
@@ -88,6 +76,8 @@ public:
 	{
 		delete[] vector_;
 	}
+	
+	T &operator [] (size_t);
 
 	template<class T> friend std::ostream &operator << (std::ostream &, IUVector <T>&);
 
@@ -95,6 +85,12 @@ private:
 	T *vector_;
 	size_t size_;
 };
+
+template<class T>
+T &IUVector<T>::operator [] (size_t index)
+{
+	return vector_[index];
+}
 
 template <class T>
 std::ostream &operator << (std::ostream &out, IUVector <T>&vector)

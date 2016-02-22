@@ -35,8 +35,7 @@ public:
 	IUVector clear()
 	{
 		IUVector temp(*this);
-		for (size_t i = 0; i < size_; i++)
-			temp.vector_[i] = 0;
+		memcpy(temp, '\0', temp.size_);
 		return temp;
 	}
 

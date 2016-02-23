@@ -9,6 +9,7 @@ public:
 	{
 		size_ = size;
 		vector_ = new T[size_];
+		memset(vector_, '\0', size_);
 	}
 
 	IUVector(const IUVector <T>&copy)
@@ -31,6 +32,20 @@ public:
 	{
 		return size_;
 	}
+	
+	IUVector reSize(size_t size)
+	{
+		delete[] vector_;
+		size_ = size;
+		vector_ = new double[size_];
+		memset(vector_, '\0', size_);
+		return *this;
+	}
+	
+	operator double *()
+	{
+		return this->vector_;
+	}
 
 	IUVector &operator = (const IUVector <T>&vector)
 	{
@@ -46,30 +61,30 @@ public:
 
 	IUVector operator * (T number)
 	{
-		IUVector temp(*this);
 		for (size_t i = 0; i < size_; i++)
-			temp.vector_[i] *= number;
-		return temp;
+			vector_[i] = vector_[i] * number;
+		return vector_;
 	}
 
 	IUVector &operator *= (T number)
 	{
-		*this = *this * number;
-		return *this;
+		for (size_t i = 0; i < size_; i++)
+			vector_[i] = vector_[i] * number;
+		return vector_;
 	}
 
 	IUVector operator / (T number)
 	{
-		IUVector temp(*this);
 		for (size_t i = 0; i < size_; i++)
-			temp.vector_[i] /= number;
-		return temp;
+			vector_[i] = vector_[i] / number;
+		return vector_;
 	}
 
 	IUVector &operator /= (T number)
 	{
-		*this = *this / number;
-		return *this;
+		for (size_t i = 0; i < size_; i++)
+			vector_[i] = vector_[i] / number;
+		return vector_;
 	}
 
 	~IUVector()

@@ -70,7 +70,7 @@ public:
 		return vector_;
 	}
 
-	double * &operator *= (double number)
+	double * operator *= (double number)
 	{
 		for (size_t i = 0; i < size_; i++)
 			vector_[i] = vector_[i] * number;
@@ -84,7 +84,7 @@ public:
 		return vector_;
 	}
 
-	double * &operator /= (double number)
+	double * operator /= (double number)
 	{
 		for (size_t i = 0; i < size_; i++)
 			vector_[i] = vector_[i] / number;

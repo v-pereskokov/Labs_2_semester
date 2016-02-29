@@ -13,7 +13,7 @@ public:
 	{
 		size_ = size;
 		vector_ = new double[size_];
-		memset(vector_, '\0', size_);
+		memset(vector_, 0, size_ * vector_[0]);
 	}
 
 	IUVector(const IUVector &copy)
@@ -37,7 +37,7 @@ public:
 		delete[] vector_;
 		size_ = size;
 		vector_ = new double[size_];
-		memset(vector_, '\0', size_);
+		memset(vector_, 0, size_ * vector_[0]);
 		return *this;
 	}
 

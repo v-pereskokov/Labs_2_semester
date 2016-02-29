@@ -11,26 +11,6 @@ public:
 	{
 	}
 
-	void compare(std::ostream &out = std::cout)
-	{
-		std::string a, b;
-		while (!f1_.eof() || !f2_.eof())
-		{
-			f1_ >> a;
-			f2_ >> b;
-			i_++;
-			if (a != b)
-			{
-				out << "Files different in " << i_ << " line " << std::endl;
-				out << "File 1 : " << a << std::endl << "File 2 : " << b << std::endl << std::endl;
-			}
-			if (f1_.eof())
-				a = ' ';
-			if (f2_.eof())
-				b = ' ';
-		}
-	}
-	
 	void search(std::ostream &out = std::cout)
 	{
 		std::string stringFirstFile, stringSecondFile, linesFirstFile, linesSecondFile;
@@ -80,7 +60,6 @@ int main() {
 	std::cout << "Enter the file name of second document : ";
 	std::cin >> fileName2;
 	compareFiles first(fileName1, fileName2);
-	first.compare();
 	first.search();
 	return 0;
 }

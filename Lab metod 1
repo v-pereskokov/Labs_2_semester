@@ -31,7 +31,7 @@ public:
 		}
 	}
 	
-		void search(std::ostream &out = std::cout)
+	void search(std::ostream &out = std::cout)
 	{
 		std::string stringFirstFile, stringSecondFile, linesFirstFile, linesSecondFile;
 		size_t lineFile1(0), lineFile2(0), countLine(0);

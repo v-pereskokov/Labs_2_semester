@@ -38,7 +38,6 @@ void search_func(std::fstream &file)
 			std::cout << i << ".";
 			for (auto it = result + find.length(); it != string.end(); it++)
 			{
-
 				if (*(it - 1) == ')')
 					break;
 				std::cout << *it;

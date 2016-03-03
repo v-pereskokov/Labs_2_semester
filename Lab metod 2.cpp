@@ -3,8 +3,7 @@
 #include <fstream>
 
 template<typename IT>
-IT findValue(IT begin1, IT end1,
-	IT begin2, IT end2)
+IT findValue(IT begin1, IT end1, IT begin2, IT end2)
 {
 	if (begin2 == end2)
 		return begin1;

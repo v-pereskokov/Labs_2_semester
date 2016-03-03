@@ -55,5 +55,6 @@ int main()
 	std::cin >> fileName;
 	std::fstream file(fileName);
 	search_func(file);
+	file.close();
 	return 0;
 }

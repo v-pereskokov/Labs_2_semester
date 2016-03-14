@@ -106,6 +106,6 @@ int main() {
 	std::cout << "Enter the file name of second document : ";
 	std::cin >> fileName2;
 	compareFiles first(fileName1, fileName2);
-	first.search();
+	first.search_diff();
 	return 0;
 }

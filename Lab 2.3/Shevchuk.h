@@ -88,6 +88,7 @@ public:
      return r;
      }
     */
+    // А при описании "+" использовать "+="
 
     friend wostream &operator<<(wostream &out, MyString &s);
     friend wistream &operator>>(wistream &in, MyString &s);

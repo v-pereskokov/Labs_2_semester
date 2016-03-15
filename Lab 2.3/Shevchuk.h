@@ -97,6 +97,7 @@ public:
 };
 
 MyString operator+(MyString &s1, MyString &s2)
+// Лучше использовать const MyString &s1 / &s2
 {
     wchar_t *res = new wchar_t[wcslen(s1.str) + wcslen(s2.str) + 1];
     

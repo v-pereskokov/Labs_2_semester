@@ -112,12 +112,14 @@ MyString operator+(MyString &s1, MyString &s2)
 }
 
 wostream &operator<<(wostream &out, MyString &s)
+// Лучше использовать const MyString &s
 {
     out << s.str;
     return out;
 }
 
 wistream &operator>>(wistream &in, MyString &s)
+// Лучше использовать const MyString &s
 {
     wchar_t buf[1000];
     in >> buf;

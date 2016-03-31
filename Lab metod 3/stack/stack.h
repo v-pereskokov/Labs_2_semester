@@ -6,7 +6,7 @@ public:
     ~stack() {
         node *temp = head_;
         while(temp != nullptr) {
-            head_ = head_->pnext_;
+            head_ = head_->pnext;
             delete temp;
             temp = head_;
         }
@@ -14,20 +14,20 @@ public:
     
     void add(int &data) {
         node *temp = new node(data);
-        temp->pnext_ = head_;
+        temp->pnext = head_;
         head_ = temp;
         delete temp;
     }
     
     int get() {
-        return head_->data_;
+        return head_->data;
     }
     
     bool del() {
         if (isEmpty())
             return false;
         node *tmp = head_;
-        head_ = head_->pnext_;
+        head_ = head_->pnext;
         delete tmp;
         return true;
     }
@@ -38,10 +38,10 @@ public:
 private:
     struct node {
         node()
-        :pnext_(nullptr), data_(0) {}
+        :pnext(nullptr), data(0) {}
         
-        node *pnext_;
-        int data_;
+        node *pnext;
+        int data;
     };
     node *head_;
 };

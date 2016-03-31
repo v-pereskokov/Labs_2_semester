@@ -40,6 +40,8 @@ private:
         node()
         :pnext(nullptr), data(0) {}
         
+        ~node() = default;
+        
         node *pnext;
         int data;
     };

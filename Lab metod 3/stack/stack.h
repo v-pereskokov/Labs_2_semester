@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 struct stack {
 public:
     stack()
@@ -46,6 +45,3 @@ private:
     };
     node *head_;
 };
-=======
-
->>>>>>> d1515e7cc117eb107850936290f8b1c11bf99170

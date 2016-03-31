@@ -4,11 +4,10 @@ public:
     :head_(nullptr) {}
     
     ~stack() {
-        node *temp = head_;
-        while(temp != nullptr) {
+        while(head_) {
+            node *temp = head_;
             head_ = head_->pnext;
             delete temp;
-            temp = head_;
         }
     }
     

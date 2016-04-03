@@ -1,17 +1,17 @@
 #include <string>
-#include "stack.h"
+#include "queue.h"
 #include "switch.h"
 #include <iostream>
 
 int main()
 {
     init_switch();
-    stack s;
+    queue q;
     std::size_t n;
     std::cin >> n;
     std::string enter;
-    std::size_t j = 0;
     int v;
+    std::size_t j = 0;
     for (std::size_t i = 0; i < n; ++i)
     {
         std::cin >> enter;
@@ -20,14 +20,14 @@ int main()
             case add:
                 int value;
                 std::cin >> value;
-                s.add(value);
+                q.add(value);
                 break;
             case get:
-                v = s.get();
+                v = q.get();
                 j++;
                 break;
             case del:
-                s.del();
+                q.del();
                 break;
         }
     }

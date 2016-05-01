@@ -26,7 +26,7 @@ public:
 protected:
 	virtual void rotate() = 0;
 
-	virtual void draw(HDC hdc, POINT point) = 0;
+	virtual void draw(HDC, POINT) = 0;
 
 protected:
 	double _x0, _y0;

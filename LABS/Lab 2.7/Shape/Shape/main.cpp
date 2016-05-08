@@ -5,7 +5,7 @@
 #include "Parallelogram.h"
 
 LRESULT CALLBACK WindowProcess(HWND, UINT, WPARAM, LPARAM);
-wchar_t className[] = L"Ôèãóðû";
+wchar_t className[] = L"Ã”Ã¨Ã£Ã³Ã°Ã»";
 #define ID_TIMER 1
 Triangle tr(900, 400, 2, 5, 7, "right", 190, RGB(146, 255, 200));
 Line line(700, 200, 45, 9, 11, "bottom", 150, RGB(255, 255, 255));
@@ -58,7 +58,7 @@ LRESULT CALLBACK WindowProcess(HWND hWindow, UINT uMessage, WPARAM wParameter, L
 	HDC hdc;
 	RECT rect;
 	Shape *shapes[2];
-	shapes[0] = new Line(200, 150, 2, 5, 7, "left", 190, RGB(255, 255, 0));
+	shapes[0] = new Triangle(900, 400, 2, 5, 7, "right", 190, RGB(146, 255, 200));
 	shapes[1] = new Line(300, 200, 45, 9, 11, "left", 150, RGB(255, 255, 255));
 
 	GetClientRect(hWindow, &rect);
@@ -74,9 +74,9 @@ LRESULT CALLBACK WindowProcess(HWND hWindow, UINT uMessage, WPARAM wParameter, L
 	case WM_TIMER:
 		hdc = GetDC(hWindow);
 		for (std::size_t i = 0; i < 2; ++i) {
-			dynamic_cast<Line*>(shapes[i])->clear(hWindow, hdc, rect);
-			dynamic_cast<Line*>(shapes[i])->move(rect);
-			dynamic_cast<Line*>(shapes[i])->paint(hdc);
+			shapes[i]->clear(hWindow, hdc, rect);
+			shapes[i]->move(rect);
+			shapes[i]->paint(hdc);
 		}
 		line.clear(hWindow, hdc, rect);
 		line.move(rect);

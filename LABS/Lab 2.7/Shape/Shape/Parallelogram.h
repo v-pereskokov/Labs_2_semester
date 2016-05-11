@@ -92,7 +92,6 @@ private:
 		SelectObject(hdc, _brush);
 		SetPolyFillMode(hdc, WINDING);
 		FillPath(hdc);
-		DeleteObject(hdc);
 	}
 
 private:

@@ -41,11 +41,13 @@ public:
 	void paint(HDC hdc) {
 		_brush = CreateSolidBrush(_color);
 		draw(hdc, _point);
+		DeleteObject(_brush);
 	}
 
 	void clear(HWND hWindow, HDC hdc, RECT rect) {
 		_brush = CreateSolidBrush(RGB(0, 0, 0));
 		draw(hdc, _point);
+		DeleteObject(_brush);
 	}
 
 	~Triangle() = default;

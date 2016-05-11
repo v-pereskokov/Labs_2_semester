@@ -41,12 +41,22 @@ public:
 		if (isParallel()) {
 			_brush = CreateSolidBrush(_color);
 			draw(hdc, _point);
+			DeleteObject(_brush);
+		}
+		else {
+			TextOut(hdc, _x0, _y0, L"ERROR", strlen("ERROR"));
 		}
 	}
 
 	void clear(HWND hWindow, HDC hdc, RECT rect) {
-		_brush = CreateSolidBrush(RGB(0, 0, 0));
-		draw(hdc, _point);
+		if (isParallel()) {
+			_brush = CreateSolidBrush(RGB(0, 0, 0));
+			draw(hdc, _point);
+			DeleteObject(_brush);
+		}
+		else {
+			TextOut(hdc, _x0, _y0, L"     ", strlen("     "));
+		}
 	}
 
 	~Parallelogram() = default;
@@ -82,7 +92,6 @@ private:
 		SelectObject(hdc, _brush);
 		SetPolyFillMode(hdc, WINDING);
 		FillPath(hdc);
-		EndPath(hdc);
 	}
 
 private:

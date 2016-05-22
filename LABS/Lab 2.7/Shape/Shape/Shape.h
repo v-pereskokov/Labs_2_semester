@@ -21,7 +21,7 @@ public:
 
 	virtual void clear(HWND, HDC, RECT) = 0;
 
-	~Shape() = default;
+	virtual ~Shape() = default;
 
 protected:
 	virtual void rotate() = 0;

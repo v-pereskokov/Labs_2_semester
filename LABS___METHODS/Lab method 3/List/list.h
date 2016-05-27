@@ -23,31 +23,26 @@ public:
      */
     
     list();
-    /*!
-     *Конструктор копирования
-     *\param[in] copy Копируемый объект
-     */
-    
-    list(const list&);
+
     /*!
      *Добавляет элемент в список
      *\param[in] index Индекс нового элемента
      *\param[in] data Значение нового элемента
      */
     
-    void add(const std::size_t, const int);
+    void add(const int, const int);
     /*!
      *Удаляет элемент из списка
      *\param[in] index Индекс удаляемого элемента
      */
     
-    void del(const std::size_t);
+    void del(const int);
     /*!
      *Получает элемент списка
      *\param[in] index Индекс получаемого элемента
      */
     
-    int get(const std::size_t) const;
+    int get(const int);
     /*!
      *Деструктор класса. Очищает список.
      *\return Значение элемента в списке по индексу
@@ -63,22 +58,13 @@ private:
      */
     
     struct node {
-        /*!
-         *Конструктор структуры
-         *\param[in] data Значение нового элемента списка
-         */
-        
         node(const int data)
         :_data(data), _pnext(nullptr) {}
-        /*!
-         *Деструктор структуры
-         */
-        
-        ~node() = default;
-        
+
         int _data; /*!< Значение элемента */
         node *_pnext; /*!< Указатель на следующщий узел */
     };
     
     node *head_; /*!< Указатель на первый узел списка */
+    node *cursor_; /*!< Курсор*/
 };

@@ -1,7 +1,8 @@
-#include <string>
-#include "queue.h"
-#include "switch.h"
 #include <iostream>
+#include <string>
+#include <vector>
+#include "queue.cpp"
+#include "switch.h"
 
 int main()
 {
@@ -10,8 +11,7 @@ int main()
     std::size_t n;
     std::cin >> n;
     std::string enter;
-    int v;
-    std::size_t j = 0;
+    std::vector<int> out;
     for (std::size_t i = 0; i < n; ++i)
     {
         std::cin >> enter;
@@ -23,15 +23,14 @@ int main()
                 q.add(value);
                 break;
             case get:
-                v = q.get();
-                j++;
+                out.push_back(q.get());
                 break;
             case del:
                 q.del();
                 break;
         }
     }
-    if (j > 0)
-        std::cout << v << std::endl;
+    for (auto a : out)
+        std::cout << a << std::endl;
     return 0;
 }

@@ -1,7 +1,8 @@
-#include <string>
-#include "stack.h"
-#include "switch.h"
 #include <iostream>
+#include <string>
+#include <vector>
+#include "stack.cpp"
+#include "switch.h"
 
 int main()
 {
@@ -10,8 +11,7 @@ int main()
     std::size_t n;
     std::cin >> n;
     std::string enter;
-    std::size_t j = 0;
-    int v;
+    std::vector<int> out;
     for (std::size_t i = 0; i < n; ++i)
     {
         std::cin >> enter;
@@ -23,15 +23,14 @@ int main()
                 s.add(value);
                 break;
             case get:
-                v = s.get();
-                j++;
+                out.push_back(s.get());
                 break;
             case del:
                 s.del();
                 break;
         }
     }
-    if (j > 0)
-        std::cout << v << std::endl;
+    for (auto a : out)
+        std::cout << a << std::endl;
     return 0;
 }

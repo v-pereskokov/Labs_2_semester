@@ -3,7 +3,7 @@
 
 static int INF = INT_MAX / 2;
 
-void Dejkstra(std::vector<int> *adj, std::vector<int> *weight,
+void Dijkstra(std::vector<int> *adj, std::vector<int> *weight,
               std::vector<bool> used, int* dist,
               int* pred, int V, int N) {
     dist[N] = 0; /* Расстояние до стартовой вершины всегда равно 0*/
@@ -60,7 +60,7 @@ int main()
         pred[j] = -1;
         dist[j] = INF;
     }
-    Dejkstra(adj, weight, used, dist, pred, V, N);
+    Dijkstra(adj, weight, used, dist, pred, V, N);
     for (std::size_t k = 0; k < V; ++k) {
         if (dist[k] != INF) {
             std::cout << dist[k] << " ";

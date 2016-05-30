@@ -1,59 +1,48 @@
 #include <iostream>
-#include <string>
 #include <fstream>
-
-template<typename IT>
-IT findValue(IT begin1, IT end1, IT begin2, IT end2)
-{
-	if (begin2 == end2)
-		return begin1;
-	while (begin1 != end1)
-	{
-		auto it1 = begin1, it2 = begin2;
-		while (*it1 == *it2)
-		{
-			it1++, it2++;
-			if (it1 == end1)
-				return end1;
-			if (it2 == end2)
-				return begin1;
-		}
-		begin1++;
-	}
-	return end1;
-}
-
-void search_func(std::fstream &file)
-{
-	std::string string;
-	std::string find = "\\func ";
-	size_t i(1);
-	while (!file.eof())
-	{
-		std::getline(file, string);
-		auto result = findValue(string.begin(), string.end(), find.begin(), find.end());
-		if (result != string.end())
-		{
-			std::cout << i << ".";
-			for (auto it = result + find.length(); it != string.end(); it++)
-			{
-				if (*(it - 1) == ')')
-					break;
-				std::cout << *it;
-			}
-			std::cout << std::endl;
-			i++;
-		}
-	}
-	file.seekg(0);
-}
+#include <string>
 
 int main()
 {
-	std::string fileName;
-	std::cin >> fileName;
-	std::fstream file(fileName);
-	search_func(file);
-	file.close();
-	return 0;
+    int i = 1;
+    std::string::size_type pos_b, pos_e;
+    std::string name, str;
+    std::cin >> name;
+    std::ifstream file(name);
+    if (!file.is_open()) {
+        std::cout << "File not found" << std::endl;
+        return 1;
+    }
+    while (getline(file, str)) {
+        pos_b = str.find("/**");
+        if (pos_b == std::string::npos) {
+            continue;
+        }
+        else {
+            pos_b = str.find("\\func");
+            if (pos_b == std::string::npos) {
+                getline(file, str);
+                pos_b = str.find("\\func");
+                pos_e = str.find("*/");
+                if (pos_e == std::string::npos) {
+                    std::cout << i << ' ' << str.substr(pos_b + FUNC) << std::endl;
+                }
+                else {
+                    std::cout << i << ' ' << str.substr(pos_b + FUNC, pos_e - (pos_b + FUNC)) << "\n";
+                }
+            }
+            else {
+                pos_e = str.find("*/");
+                if (pos_e == std::string::npos) {
+                    std::cout << i << ' ' << str.substr(pos_b + FUNC) << "\n";
+                }
+                else {
+                    std::cout << i << ' ' << str.substr(pos_b + FUNC, pos_e - (pos_b + FUNC)) << "\n";
+                }
+            }
+        }
+        ++i;
+    }
+    file.close();
+    return 0;
 }
